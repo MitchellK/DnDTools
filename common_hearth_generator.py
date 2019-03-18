@@ -15,16 +15,20 @@ ENCOUNTER_OPTIONS = [COMMON_HEARTH, WILDERNESS_ENCOUNTERS, CITY_ENCOUNTERS]
 
 
 def main():
-    # request random file to open
-    user_selection = main_menu()
-    # open the csv
-    current_list = open_csv(user_selection)
-    # select a random option (*to do for later unless already used)
-    current_encounter = randomise_option(current_list)
-    # add the option to an exceptions list
-
-    # print the random option
-    display_result(current_encounter)
+    run = True
+    while run:
+        # request file to open
+        user_selection = main_menu()
+        # open the csv
+        current_list = open_csv(user_selection)
+        # select a random option (*to do for later unless already used)
+        current_encounter = randomise_option(current_list)
+        # TODO: add the option to an exceptions list
+        # print the random option
+        display_result(current_encounter)
+        quit = (input("Would you like to quit? Y/N").upper())
+        if quit == "Y":
+            run = False
 
 
 def main_menu():
@@ -42,16 +46,17 @@ def open_csv(selection):
     return read_file
 
 
-def randomise_option(list):
+def randomise_option(enc_list):
     dice_roll = random.randint(1,100)
-    for i in list:
+    for i in enc_list:
         if int(i[0]) == dice_roll:
             generated_encounter = i[1]
             return generated_encounter
-    list.close()
+    enc_list.close()
 
 
 def display_result(encounter):
+    # TODO: fix up the formatting for this one
     print(encounter)
 
 
