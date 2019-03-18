@@ -4,6 +4,7 @@ randomly select an entry from a list of encounters
 
 import csv
 import random
+import textwrap
 
 """
 All lists need to be declared as global variables and added to encounter options
@@ -56,8 +57,12 @@ def randomise_option(enc_list):
 
 
 def display_result(encounter):
-    # TODO: fix up the formatting for this one
-    print(encounter)
+    wrapped_text = textwrap.TextWrapper(width=80,
+                                        initial_indent=" " * 4,
+                                        subsequent_indent=" " * 4,
+                                        break_long_words=False,
+                                        break_on_hyphens=False)
+    print(wrapped_text.fill(encounter))
 
 
 main()
